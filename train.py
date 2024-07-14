@@ -1,7 +1,6 @@
 import typer
 from ultralytics import YOLO
 
-
 def main(
     base_model: str,
     datasets: str = "./datasets/data.yaml",
