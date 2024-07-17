@@ -5,7 +5,7 @@ def main(
     base_model: str,
     datasets: str = "./datasets/data.yaml",
     epochs: int = 40,
-    imgsz: int = 1024,
+    imgsz: int = 248,
     batch: int = 8,
     dropout: float = 0.0,
     resume: bool = False,

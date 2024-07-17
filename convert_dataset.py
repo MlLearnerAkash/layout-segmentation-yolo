@@ -16,23 +16,16 @@ def main(root_folder: Path = "./datasets"):
                 "val": "images/val",
                 "test": "images/test",
                 "names": {
-                    "0": "Caption",
-                    "1": "Footnote",
-                    "2": "Formula",
-                    "3": "List-item",
-                    "4": "Page-footer",
-                    "5": "Page-header",
-                    "6": "Picture",
-                    "7": "Section-header",
-                    "8": "Table",
-                    "9": "Text",
-                    "10": "Title",
+                    "0": "Text",
+                    "1": "Equation",
+                    "2": "Table",
+                    "3": "Picture",
                 },
             },
             f,
         )
 
-    for folder in ["val", "test", "train"]:
+    for folder in ["test", "train"]:
         print(f"convert {folder} dataset...")
         os.makedirs(root_folder / "labels" / folder, exist_ok=True)
         os.makedirs(root_folder / "images" / folder, exist_ok=True)
@@ -40,6 +33,7 @@ def main(root_folder: Path = "./datasets"):
             bigjson = json.load(f)
         for image in tqdm.tqdm(bigjson["images"], desc="move images..."):
             image_id = image["id"]
+            print("The image id is: ", image_id)
             filename = image["file_name"]
             os.rename(
                 root_folder / "PNG" / filename,
