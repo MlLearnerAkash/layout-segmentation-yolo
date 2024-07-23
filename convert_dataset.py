@@ -19,18 +19,19 @@ def main(root_folder: Path = "./datasets"):
                     "0": "Text",
                     "1": "Equation",
                     "2": "Table",
-                    "3": "Picture",
+                    "3": "Graphics",
                 },
             },
             f,
         )
 
-    for folder in ["test", "train"]:
+    for folder in ["train", "test", "val"]:
         print(f"convert {folder} dataset...")
         os.makedirs(root_folder / "labels" / folder, exist_ok=True)
         os.makedirs(root_folder / "images" / folder, exist_ok=True)
-        with open(root_folder / "COCO" / f"{folder}.json") as f:
+        with open(root_folder / "COCO" / f"{folder}_modified.json") as f:
             bigjson = json.load(f)
+        print(bigjson)
         for image in tqdm.tqdm(bigjson["images"], desc="move images..."):
             image_id = image["id"]
             print("The image id is: ", image_id)
