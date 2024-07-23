@@ -16,8 +16,8 @@ def extract_tar(tar_file, target_directory):
 
 def main():
     parser = argparse.ArgumentParser(description="Unzip or untar files to the specified directory")
-    parser.add_argument('file_name', help="Path to the ZIP or TAR file to be extracted")
-    parser.add_argument('target_directory', help="Directory where the files will be extracted")
+    parser.add_argument('--file_name', help="Path to the ZIP or TAR file to be extracted")
+    parser.add_argument('--target_directory', help="Directory where the files will be extracted")
 
     args = parser.parse_args()
 
