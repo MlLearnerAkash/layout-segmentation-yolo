@@ -4,20 +4,21 @@ from ultralytics import YOLO
 def main(
     base_model: str,
     datasets: str = "./datasets/data.yaml",
-    conf: float = 0.75,
+    conf: float = 0.5,
     imgsz: int = 1024,
-    batch: int = 16,
+    batch: int = 4,
     plots: bool = True,
     save_json: bool = False,
     device = "0",
-    iou: float= 0.5,
+    iou: float= 0.75,
+    save_hybrid: bool=True
 ):
     try:
         from clearml import Task
 
         Task.init(
             project_name="yolo-doclaynet-11-class-val",
-            task_name=f"imgsz-{imgsz}-conf-{conf}-iou-{iou}",
+            task_name=f"back-ground-imgsz-{imgsz}-conf-{conf}-iou-{iou}",
         )
     except ImportError:
         print("clearml not installed")
@@ -31,7 +32,8 @@ def main(
         plots=plots,
         save_json=save_json,
         device = device,
-        iou = iou
+        iou = iou,
+        save_hybrid= save_hybrid,
 
     )
     print(results)
