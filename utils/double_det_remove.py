@@ -24,16 +24,25 @@ def filter_detections(predictions, confidences, labels, target_label=2):
         # No target label found, return original inputs
         return predictions, confidences, labels
     # print(labels)
-    target_box = target_boxes[-1]  # Assume only one target label box
+    target_box = target_boxes#[0]  # Assume only one target label box
 
-    def is_inside_box(box, target_box):
+    def is_inside_box(box, target_boxes):
         """Check if a box is inside the target box."""
-        return (
-            box[0] > target_box[0] and
-            box[1] > target_box[1] and
-            box[2] < target_box[2] and
-            box[3] < target_box[3]
-        )
+        # return (
+        #     box[0] > target_box[0] and
+        #     box[1] > target_box[1] and
+        #     box[2] < target_box[2] and
+        #     box[3] < target_box[3]
+        # )
+        """Check if a box is inside any of the target boxes."""
+        for target_box in target_boxes:
+            if (box[0] > target_box[0] and
+                box[1] > target_box[1] and
+                box[2] < target_box[2] and
+                box[3] < target_box[3]):
+                return True
+        return False
+
 
     # Filter out boxes inside the target box
     filtered_indices = [
@@ -68,33 +77,12 @@ def main(model: str, image: str, line_width: int = 2, font_size: int = 2):
             color=colors(label, bgr=True),
         )
     annotator.save(
-        os.path.join(os.path.dirname(image), "annotated-" + os.path.basename(image))
+        os.path.join(os.getcwd(), "annotated-" + os.path.basename(image))
     )
 
 # Example usage
 if __name__ == "__main__":
-    # Load a model
-    # model = YOLO("/home/akash/ws/layout-segmentation-yolo/runs/detect/train3/weights/best.pt")  # pretrained YOLOv8n model
-
-    # # Run batched inference on a list of images
-    # results = model(["/home/akash/ws/layout-segmentation-yolo/datasets/images/test/4400.png"])  # return a list of Results objects
-
-    # print("Confidences for each cropped image:", results[0].boxes.conf)
-    # print("bpounding-boxes for each cropped image:", results[0].boxes.xywhn)
-    # print("classes for each cropped image:", results[0].boxes.cls)
-
-
-    # # Dummy data (replace with actual data)
-    # predictions = results[0].boxes.xywhn
-    # confidences = results[0].boxes.conf
-    # labels = results[0].boxes.cls
-
-    # filtered_predictions, filtered_confidences, filtered_labels = filter_detections(predictions, confidences, labels)
     
-    # print("Filtered Predictions:", filtered_predictions)
-    # print("Filtered Confidences:", filtered_confidences)
-    # print("Filtered Labels:", filtered_labels)
-
     typer.run(main)
 
 
