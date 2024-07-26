@@ -22,8 +22,8 @@ def relabelling(root_directory: Path= "./datasets/COCO"):
                 # print("Changed to annotation is: ", 3)
             if category_id==7:
                 annotation["category_id"]=4
-        with open(root_directory+ "/"+ "COCO"+"/"+f"{folder}_modified.json", "a") as f:
-            json.dump(big_json, f, indent=4)
+        with open(root_directory+ "/"+ "COCO"+"/"+f"{folder}_modified.json", "w") as f:
+            json.dump(big_json, f, indent=2)
             # print(annotation)
 
 if __name__=="__main__":
