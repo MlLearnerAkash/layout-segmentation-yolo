@@ -1,0 +1,3 @@
+[submodule "layout-detection-fastapi"]
+	path = layout-detection-fastapi
+	url = https://github.com/MlLearnerAkash/layout-detection-fastapi.git
