@@ -1,3 +1,9 @@
 [submodule "layout-detection-fastapi"]
 	path = layout-detection-fastapi
 	url = https://github.com/MlLearnerAkash/layout-detection-fastapi.git
+[submodule "dectron2"]
+	path = dectron2
+	url = https://github.com/MlLearnerAkash/detectron2-publaynet.git
+[submodule "detectron2"]
+	path = detectron2
+	url = https://github.com/MlLearnerAkash/detectron2-publaynet.git
