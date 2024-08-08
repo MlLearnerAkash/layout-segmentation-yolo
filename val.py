@@ -4,7 +4,7 @@ from ultralytics import YOLO
 def main(
     base_model: str,
     datasets: str = "./datasets/data.yaml",
-    conf: float = 0.2,
+    conf: float = 0.9,
     imgsz: int = 1024,
     batch: int = 4,
     plots: bool = True,

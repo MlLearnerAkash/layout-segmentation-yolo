@@ -7,3 +7,6 @@
 [submodule "detectron2"]
 	path = detectron2
 	url = https://github.com/MlLearnerAkash/detectron2-publaynet.git
+[submodule "SwinDocSegmenter"]
+	path = SwinDocSegmenter
+	url = https://github.com/MlLearnerAkash/SwinDocSegmenter.git
